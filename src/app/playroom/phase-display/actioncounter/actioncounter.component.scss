@@ -1,0 +1,25 @@
+.action-token {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: rgb(45, 205, 90);
+  background: radial-gradient(circle, rgba(45, 205, 90, 1) 0%, rgba(29, 77, 20, 1) 100%);
+  border-width: 2px;
+  border-color: #4e4e4e;
+}
+
+
+.action-token.activated {
+  background: rgb(180, 255, 192);
+  background: radial-gradient(circle, rgb(180, 255, 192) 0%, rgb(56, 255, 111) 100%);
+  border-width: 0;
+
+  box-shadow: 0 0 15px 7px rgb(180, 255, 192), /* inner white */
+  0 0 35px 22px rgb(70, 179, 115); /* outer cyan */
+}
+
+
+
+.action-counter {
+  border-radius: 10px 0 0 10px;
+}

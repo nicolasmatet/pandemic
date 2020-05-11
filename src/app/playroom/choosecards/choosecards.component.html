@@ -1,0 +1,45 @@
+<div fxLayout="column" fxLayoutGap="10px" cdkDrag cdkDragRootElement=".cdk-overlay-pane">
+  <span fxFill *ngIf="ncards"> Choisissez {{ncards}} carte{{ncards>1?'s':''}}:</span>
+  <span fxFill *ngIf="!ncards"> Prochaines infections:</span>
+
+  <div *ngIf="ncards" fxFill class="card-chooser" fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="10px">
+
+    <div cdkDropList #fromcards="cdkDropList"
+         #todoList="cdkDropList"
+         [cdkDropListData]="cards"
+         [cdkDropListConnectedTo]="[tocards]"
+         (cdkDropListDropped)="dropCard($event)"
+         class="cards-list"
+         fxLayout="column"
+         fxLayoutGap="5px"
+         fxFlex="50">
+      <div cdkDrag *ngFor="let card of cards" class="card"
+           [class]="dictLocations[card]?dictLocations[card].location_type:cardTypes.event">{{card}}
+      </div>
+    </div>
+
+    <div cdkDropList #tocards="cdkDropList" [cdkDropListConnectedTo]="[fromcards]"
+         [cdkDropListData]="chosenCards"
+         (cdkDropListDropped)="dropCard($event)" class="cards-list" fxFlex="50"
+         fxLayout="column"
+         fxLayoutGap="5px">
+      <div cdkDrag *ngFor="let card of chosenCards" class="card"
+           [class]="dictLocations[card]?dictLocations[card].location_type:cardTypes.event">{{card}}
+      </div>
+    </div>
+  </div>
+
+  <div fxFill fxLayout="column"
+       fxLayoutGap="5px"
+       class="cards-list" *ngIf="!ncards">
+    <div *ngFor="let card of cards" class="card"
+         [class]="dictLocations[card]?dictLocations[card].location_type:cardTypes.event"
+    >{{card}}
+    </div>
+  </div>
+
+  <button fxFill mat-raised-button color="primary"
+          [disabled]="chosenCards.length !==ncards"
+          mat-button [mat-dialog-close]="chosenCards">Ok
+  </button>
+</div>

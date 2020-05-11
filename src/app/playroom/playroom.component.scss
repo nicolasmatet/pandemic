@@ -1,0 +1,25 @@
+@import "~@angular/material/theming";
+@import '../variables.scss';
+
+
+
+.game-container {
+  width: 100%;
+}
+
+.main-menu-icon {
+  width: 20px;
+  height: 20px;
+}
+
+
+
+
+.main-menu-button{
+  background-color: mat-color($primaryPalette);
+  color: mat-color($accentPalette);
+}
+
+.main-menu-button.selected{
+}
+

@@ -1,0 +1,82 @@
+<button mat-mini-fab color="warn"
+        [disabled]="selectedCards.length==0 || (gameStateView.phase!=gamePhases.DUMP_CARD)"
+        (click)="dumpCard()"
+>
+  <img src="assets/img/delete.svg" class="icon-small">
+</button>
+
+<!--go from -->
+<button mat-mini-fab color="accent"
+        [disabled]="!selectedLocation ||gameStateView.phase!=gamePhases.PLAYER_ACTION"
+        (click)="goFromLocation()"
+>
+  <img src="assets/img/departure.svg" class="icon-small">
+</button>
+
+<!--go to expert -->
+<button mat-mini-fab color="accent"
+        *ngIf="gameStateView.player_roles && playroomView.player && gameStateView && gameStateView.player_roles[playroomView.player.name] === rolesEnum.EXPERT"
+        [disabled]="!selectedLocation || !selectedCards.length || (gameStateView.phase!=gamePhases.PLAYER_ACTION)"
+        (click)="goToLocationExpert()"
+>
+  <img src="assets/img/drop.svg" class="icon-small">
+</button>
+
+
+<!--go to -->
+<button mat-mini-fab color="accent"
+        [disabled]="!selectedLocation || (gameStateView.phase!=gamePhases.PLAYER_ACTION)"
+        (click)="goToLocation()"
+>
+  <img src="assets/img/arrival.svg" class="icon-small">
+</button>
+
+
+<!--build  -->
+<button mat-mini-fab color="accent"
+        *ngIf="gameStateView.phase !== gamePhases.DESTROY"
+        (click)="buildResearchCenter()"
+>
+  <img src="assets/img/build.svg" class="icon-small">
+</button>
+
+<!--destroy  -->
+<button mat-mini-fab color="accent"
+        [disabled]="!selectedLocation"
+        *ngIf="gameStateView.phase === gamePhases.DESTROY"
+        (click)="destroyResearchCenter()"
+        color="warn"
+>
+  <img src="assets/img/destroy.svg" class="icon-small">
+</button>
+
+
+<!--cure -->
+<button mat-mini-fab color="primary"
+        [disabled]="selectedCards.length<gameRules.N_CARDS_TO_CURE || (gameStateView.phase!=gamePhases.PLAYER_ACTION)"
+        (click)="cureDisease()"
+>
+  <img src="assets/img/cure.svg" class="icon-small">
+</button>
+
+
+<!--event -->
+<button mat-mini-fab color="primary"
+        [disabled]="!(selectedCards.length===1 &&selectedCards[0] && selectedCards[0].type === cardTypes.event)"
+        (click)="playEvent()"
+>
+  <img src="assets/img/event.svg" class="icon-small">
+</button>
+
+
+<button
+  mat-mini-fab
+  [disabled]="!gameStateView.cancellable"
+  (click)="cancelLastAction()"
+>
+  <img src="assets/img/revert.svg" class="icon-small">
+</button>
+
+
+
+

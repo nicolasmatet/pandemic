@@ -1,0 +1,55 @@
+
+  <mat-card
+    style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;"
+    unselectable="on"
+    onselectstart="return false;"
+    class="cards-card"
+    onmousedown="return false;"
+
+  >
+    <mat-card-content class="cards-card-content" *ngIf="playroomView">
+      <div cdkDropListGroup fxLayout="row" fxFill fxLayoutAlign="space-between start">
+
+
+        <div *ngFor="let player of playerViews" fxLayoutGap="5px"
+             fxLayout="column" class="player-description">
+
+          <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start center" class="player-description-header">
+      <span class="playername"
+            [class.selfPlayer]="player.isSelf"
+            (click)="onOpenPlayerMenu()">{{player.name}}</span>
+            <span class="role" [class]="player.role">{{player.role}}</span>
+          </div>
+
+          <div fxLayout="row wrap" fxLayoutGap="5px"
+               cdkDropList
+               [cdkDropListData]="player.allCards"
+               [id]="player.name" (cdkDropListDropped)="drop($event)">
+
+            <div *ngFor="let card of player.allCards" cdkDrag [id]="card.name">
+              <ng-container
+                *ngTemplateOutlet="cardtemplate;
+              context: {'card':card,  'selectable':player.isSelf}"></ng-container>
+            </div>
+
+
+          </div>
+        </div>
+
+      </div>
+
+    </mat-card-content>
+  </mat-card>
+
+  <ng-template #cardtemplate let-card="card" let-selectable="selectable">
+
+    <ng-container *ngIf="selectable">
+      <div class="card" [class]="card.type" [class.selected]="selectedCards.includes(card)"
+           (click)="selectCard($event, card)">{{card.name}}
+      </div>
+    </ng-container>
+    <ng-container *ngIf="!selectable">
+      <div class="card" [class]="card.type">{{card.name}}</div>
+    </ng-container>
+  </ng-template>
+

@@ -1,1 +1,133 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/theming";
+@import './app/variables.scss';
+
+@font-face {
+  font-family: "Oxanium";
+  src: url("https://fonts.googleapis.com/css?family=Oxanium");
+}
+
+html, body {
+  height: 100%;
+  background-color: $darkgrey;
+}
+
+body {
+  margin: 0;
+  font-family: Oxanium, "Helvetica Neue", sans-serif;
+  font-weight: bolder;
+}
+
+mat-card {
+  border-radius: 0 !important;
+}
+
+.icon-small {
+  color: mat-color($accentPalette) !important;
+  width: 24px;
+  height: 24px;
+  transform: scale(1);
+  //padding: 50% 50%;
+  object-fit: contain;
+}
+
+.role {
+  color: white;
+  border-radius: 15px;
+  padding: 5px 10px;
+}
+
+.medecin {
+  background-color: orange;
+}
+
+.chercheuse {
+  background-color: saddlebrown;
+}
+
+.scientifique {
+  background-color: lightgray;
+}
+
+.expert {
+  background-color: lightgreen;
+}
+
+.specialiste {
+  background-color: darkgreen;
+}
+
+.planificateur {
+  background-color: lightskyblue;
+}
+
+.repartiteuse {
+  background-color: deeppink;
+}
+
+.card {
+  color: white;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.card.selected {
+  -webkit-box-shadow: 0px 5px 5px -2px mat-color($accentPalette);
+  -moz-box-shadow: 0px 5px 5px -2px mat-color($accentPalette);
+  box-shadow: 0px 5px 5px -2px mat-color($accentPalette);
+  transform: translate(0, -5px);
+}
+
+.card.event {
+  background-color: lightgray;
+}
+
+.card.yellow {
+  background-color: orange;
+}
+
+.card.red {
+  background-color: crimson;
+}
+
+.card.blue {
+  background-color: cornflowerblue;
+}
+
+.card.black {
+  background-color: black;
+}
+
+.action-counter {
+  padding: 8px 32px 8px 16px;
+  border-radius: 10px;
+  //background: linear-gradient(330deg, rgba(25, 25, 25, 1) 0%, rgb(146, 142, 142) 50%, rgb(168, 168, 168) 100%);
+  background: rgb(25, 25, 25) url(/assets/img/metal.png);
+}
+
+.player-name {
+
+  color: #5d0000;
+}
+
+.selfPlayer {
+  color: mat-color($accentPalette) !important;
+}
+
+.end-button {
+  border-radius: 0 10% 10% 0;
+
+  background: rgb(205, 45, 45);
+  background: radial-gradient(circle, rgba(205, 45, 45, 1) 0%, rgba(77, 20, 20, 1) 100%);
+}
+
+.end-button.activated {
+  cursor: pointer;
+  border-width: 0;
+  background: rgb(255, 220, 221);
+  background: radial-gradient(circle, rgb(255, 220, 221) 0%, rgb(255, 89, 69) 100%);
+
+  box-shadow: 0 0 15px 7px rgb(255, 89, 69), /* inner white */
+  0 0 35px 22px rgb(200, 34, 34); /* outer cyan */
+}

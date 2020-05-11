@@ -1,0 +1,33 @@
+<div fxLayout="row">
+  <div fxLayout="row" class="action-counter" fxLayoutGap="64px">
+
+    <span class="player-name">
+      {{gameStateView.current_player}}
+    </span>
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="32px">
+      <ng-container
+        *ngTemplateOutlet="actiontoken; context: {'lvl':1, 'curlvl':gameStateView.player_actions}"></ng-container>
+      <ng-container
+        *ngTemplateOutlet="actiontoken; context: {'lvl':2, 'curlvl':gameStateView.player_actions}"></ng-container>
+      <ng-container
+        *ngTemplateOutlet="actiontoken; context: {'lvl':3, 'curlvl':gameStateView.player_actions}"></ng-container>
+      <ng-container
+        *ngTemplateOutlet="actiontoken; context: {'lvl':4, 'curlvl':gameStateView.player_actions}"></ng-container>
+    </div>
+  </div>
+
+  <button mat-button
+          class="end-button"
+          [disabled]="gameStateView.player_actions<gameRules.MAX_ACTIONS"
+          [class.activated]="gameStateView.player_actions>=4"
+          (click)="onClickEnd()"
+  >
+    Fin
+  </button>
+
+</div>
+
+<ng-template #actiontoken let-lvl="lvl" let-curlvl="curlvl">
+  <div class="action-token" [class.activated]="curlvl>=lvl"></div>
+
+</ng-template>

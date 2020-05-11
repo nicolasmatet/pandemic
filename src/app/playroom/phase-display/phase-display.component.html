@@ -1,0 +1,27 @@
+<div class="display">
+
+  <app-actionbar class="actionbar-container"></app-actionbar>
+  <div class="phase-display-container" fxLayout="row" fxLayoutGap="0" *ngIf="gameStateView">
+    <app-actioncounter
+      *ngIf="gameStateView.phase===gamePhases.PLAYER_ACTION || gameStateView.phase===gamePhases.END_TURN"
+      [gameStateView]="gameStateView">
+    </app-actioncounter>
+
+
+    <ng-container *ngTemplateOutlet="dumpmessage; context: gameStateView|getDumpContext"></ng-container>
+
+    <app-dumpphase
+      *ngIf="gameStateView.phase===gamePhases.DESTROY"
+      [message]="'Vous devez détruire un centre de recherche (6 max.)'"></app-dumpphase>
+
+    <app-epidemic *ngIf="gameStateView.phase===gamePhases.SOLVE_EPIDEMIC"></app-epidemic>
+
+  </div>
+
+</div>
+
+
+<ng-template #dumpmessage let-player="player" let-nCards="nCards">
+  <app-dumpphase *ngIf="gameStateView.phase===gamePhases.DUMP_CARD"
+                 [message]="player + ' doit jeter ' + nCards + ' cartes!'"></app-dumpphase>
+</ng-template>

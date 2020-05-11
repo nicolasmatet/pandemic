@@ -1,0 +1,21 @@
+@import "~@angular/material/theming";
+@import '../variables.scss';
+
+.players-card {
+  width: 100%;
+  min-height: 400px;
+  z-index: 3000;
+}
+
+.ready {
+  //background-color: mat-color($accentPalette) !important;
+  //color: black  !important;
+}
+
+.player-header {
+  padding: 15px;
+}
+
+.player-row {
+  padding: 15px;
+}

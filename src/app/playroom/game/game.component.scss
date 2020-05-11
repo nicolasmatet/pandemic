@@ -1,0 +1,205 @@
+///* Animate items as they're being sorted. */
+//.cdk-drop-list-dragging .cdk-drag {
+//  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+//}
+
+/* Animate an item that has been dropped. */
+//.cdk-drag-animating {
+//  transition: transform 1000ms cubic-bezier(0, 0, 0.2, 1);
+//}
+
+.mapcontainer {
+  position: absolute;
+  left: 0;
+}
+
+.map {
+  width: 100%;
+}
+
+.deck-count {
+  position: absolute;
+  color: white;
+  font-weight: bold;
+  font-size: 64px;
+}
+
+.infection-count {
+  top: 6%;
+  left: 77.5%;
+  color: #3f963d;
+}
+
+.location-count {
+  top: 81%;
+  left: 60%;
+  color: #d8b980;
+}
+
+.player-token {
+  cursor: pointer;
+  background-color: transparent;
+  position: absolute;
+  z-index: 2;
+  border-radius: 24px;
+  height: 48px;
+  width: 48px;
+}
+
+.location {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 8px;
+}
+
+.red {
+  background-color: red;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.black {
+  background-color: black;
+}
+
+.yellow {
+  background-color: orange;
+}
+
+.player-token.repartiteuse {
+  background-image: url(/assets/img/headset.svg);
+  -webkit-box-shadow: 0px 0px 10px 5px deeppink;
+  -moz-box-shadow: 0px 0px 10px 5px deeppink;
+  box-shadow: 0px 0px 10px 5px deeppink;
+}
+
+.player-token.medecin {
+  background-image: url(/assets/img/caduceus.svg);
+  -webkit-box-shadow: 0px 0px 10px 5px orange;
+  -moz-box-shadow: 0px 0px 10px 5px orange;
+  box-shadow: 0px 0px 10px 5px orange;
+}
+
+.player-token.chercheuse {
+  background-image: url(/assets/img/flask.svg);
+  -webkit-box-shadow: 0px 0px 10px 5px saddlebrown;
+  -moz-box-shadow: 0px 0px 10px 5px saddlebrown;
+  box-shadow: 0px 0px 10px 5px saddlebrown;
+}
+
+.player-token.scientifique {
+  background-image: url(/assets/img/dna.svg);
+  -webkit-box-shadow: 0px 0px 10px 5px lightgray;
+  -moz-box-shadow: 0px 0px 10px 5px lightgray;
+  box-shadow: 0px 0px 10px 5px lightgray;
+}
+
+.player-token.planificateur {
+  background-image: url(/assets/img/phone.svg);
+  -webkit-box-shadow: 0px 0px 10px 5px lightskyblue;
+  -moz-box-shadow: 0px 0px 10px 5px lightskyblue;
+  box-shadow: 0px 0px 10px 5px lightskyblue;
+}
+
+.player-token.expert {
+  background-image: url(/assets/img/wrench.svg);
+  -webkit-box-shadow: 0px 0px 10px 5px lightgreen;
+  -moz-box-shadow: 0px 0px 10px 5px lightgreen;
+  box-shadow: 0px 0px 10px 5px lightgreen;
+}
+
+.player-token.specialiste {
+  background-image: url(/assets/img/gas_mask.svg);
+  -webkit-box-shadow: 0px 0px 10px 5px darkgreen;
+  -moz-box-shadow: 0px 0px 10px 5px darkgreen;
+  box-shadow: 0px 0px 10px 5px darkgreen;
+}
+
+.disease-count {
+  position: absolute;
+  top: 86.5%;
+  font-size: 20px;
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  text-align: center;
+}
+
+.disease-count.cured {
+  top: 92.7%
+}
+
+.disease-count.yellow {
+  left: 36.7%
+}
+
+.disease-count.blue {
+  left: 40.3%
+}
+
+.disease-count.black {
+  left: 43.6%
+
+}
+
+.disease-count.red {
+  left: 47.3%
+
+}
+
+.outbreaks {
+  position: absolute;
+
+}
+
+.epidemics {
+  position: absolute;
+}
+
+.dump {
+  position: absolute;
+  overflow-y: auto;
+}
+
+.infection-dump {
+  left: 87%;
+  top: 4%;
+  width: 11.5%;
+  max-width: 11.5%;
+  height: 14%;
+}
+
+.card {
+  max-height: 18px;
+  font-size: 12px;
+  margin: 3px;
+}
+
+.location-dump {
+  left: 68.5%;
+  top: 77.5%;
+  width: 8%;
+  max-width: 8%;
+  height: 19%;
+}
+
+.selected-location {
+  position: absolute;
+  //background-color: white;
+  border-radius: 50%;
+  width: 0;
+  height: 0;
+  box-shadow: 0 0 30px 15px rgba(255, 255, 255, 0.8), /* inner white */
+  0 0 50px 30px rgba(255, 0, 255, 0.8), /* middle magenta */
+  0 0 50px 45px rgba(0, 255, 255, 0.8); /* outer cyan */
+
+}
+
+.research-center {
+  position: absolute;
+  z-index: 2;
+}

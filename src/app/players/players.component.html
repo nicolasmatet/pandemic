@@ -1,0 +1,92 @@
+
+<ng-container *ngIf="playroomView">
+
+  <div class="players-card" fxLayout="column" fxLayoutAlign="space-between start" fxLayoutGap="20px">
+    <div fxFill style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;"
+         unselectable="on"
+         onselectstart="return false;"
+         onmousedown="return false;">
+      <div fxLayout="row"
+           fxLayoutAlign="start center"
+           fxLayoutGap="10px"
+           *ngFor="let player of playroomView.players"
+           [class.ready]="player.is_ready"
+           class="player-row"
+      >
+      <span fxFlex="40" fxLayoutAlign="start center"
+            [class.selfPlayer]="playroomView.player && player.name === playroomView.player.name">
+        {{player.name}}
+      </span>
+
+        <ng-container>
+          <mat-form-field fxFlex="30"
+                          *ngIf="!playroomView.has_started && playroomView.player && !playroomView.player.is_ready && player.name === playroomView.player.name ">
+            <mat-label>Role</mat-label>
+            <mat-select
+              [(value)]="playroomView.player.role"
+              (selectionChange)="chooseRole()">
+              <mat-option>-</mat-option>
+              <mat-option *ngFor="let role of roles" [value]="role.value">
+                {{role.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <span fxFlex="30"
+                *ngIf="playroomView.has_started || !(playroomView.player && !playroomView.player.is_ready && player.name === playroomView.player.name)"
+                fxLayoutAlign="start center">
+          <span class="role" [class]="player.role">
+          {{player.role}}
+          </span>
+        </span>
+        </ng-container>
+
+      <button *ngIf="!player.taken" mat-icon-button color="accent" (click)="joinGameAs(player)" matTooltip="Utiliser">
+        <mat-icon>transfer_within_a_station</mat-icon>
+      </button>
+
+
+
+      <button *ngIf="player.taken" mat-icon-button color="warn" (click)="kickPlayer(player)" matTooltip="Kick">
+        <mat-icon>not_interested</mat-icon>
+      </button>
+
+
+        <span fxFlex fxLayoutAlign="start center">
+      <mat-checkbox class="ready-checkbox"
+                    [checked]="player.is_ready"
+                    [disabled]="true"
+      ></mat-checkbox>
+      </span>
+
+      </div>
+    </div>
+
+
+    <div fxFill>
+      <div *ngIf="!playroomView.has_started" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+        <mat-form-field fxFlex>
+          <mat-label>Nom d'utilisateur</mat-label>
+          <input matInput placeholder="Choisir un nom unique" [value]="username" (change)="setUsername($event)">
+        </mat-form-field>
+
+        <button mat-icon-button color="accent" (click)="joinGame()">
+          <mat-icon>add_circle_outline</mat-icon>
+        </button>
+
+        <mat-checkbox fxFlex="10"
+                      class="ready-checkbox"
+                      [disabled]="!(  playroomView.player && playroomView.player.role)"
+                      [checked]="playroomView.player && playroomView.player.is_ready"
+                      (change)="readyPlayer($event)" matTooltip="Prêt ?">
+        </mat-checkbox>
+
+      </div>
+
+      <button *ngIf="!playroomView.has_started && playroomView.players" fxFill mat-raised-button color="primary" (click)="onStartGame()">
+        Commencer la pandémie ! ({{playroomView.players.length}} joueurs)
+      </button>
+    </div>
+  </div>
+
+</ng-container>

@@ -1,0 +1,6 @@
+/* variables.scss */
+@import "../../node_modules/@angular/material/theming";
+
+$primaryPalette: mat-palette($mat-purple, 700, 500, 800);
+$accentPalette: mat-palette($mat-green, A200, A100, A400);
+$darkgrey: #3d3d3d

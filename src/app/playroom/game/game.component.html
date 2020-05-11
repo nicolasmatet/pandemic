@@ -1,0 +1,215 @@
+<div class="mapcontainer"
+     style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;"
+     unselectable="on"
+     onselectstart="return false;"
+     onmousedown="return false;"
+     cdkDropList
+     cdkDropListSortingDisabled
+     (cdkDropListDropped)="dropPlayer($event)"
+>
+
+  <!--players-->
+
+  <div cdkDrag
+       cdkDragBoundary=".mapcontainer"
+       *ngFor="let player of playerViews"
+       [cdkDragData]="player"
+       class="player-token" [class]="player.role"
+       [cdkDragFreeDragPosition]="player.dragPosition"
+       [style.top]="player.dragPosition.y+'px'"
+       [style.left]="player.dragPosition.x + 'px'"
+       (click)="toogleDR()"
+
+  >
+  </div>
+
+  <app-phase-display [gameStateView]="gameStateView"></app-phase-display>
+
+  <img src="assets/img/map.png" #map class="map" (click)="onClickMap($event)">
+
+  <ng-container *ngIf="selectedLocation">
+    <ng-container
+      *ngTemplateOutlet="selectedLocationtemplate; context: {'x':selectedLocation.x / DX, 'y' :selectedLocation.y / DY}">
+    </ng-container>
+
+  </ng-container>
+  <ng-container *ngIf="gameStateView">
+
+    <!--location deck cards count-->
+    <div class="deck-count location-count">
+      {{gameStateView.location_deck_count}}
+    </div>
+
+    <!--infection deck cards count-->
+    <div class="deck-count infection-count">
+      {{gameStateView.infection_deck_count}}
+    </div>
+
+    <!--diseases tokens-->
+    <ng-container *ngFor="let disease of gameStateView.disease_status">
+      <ng-container
+        *ngTemplateOutlet="diseasecounttemplate; context: {'disease':disease }">
+      </ng-container>
+
+    </ng-container>
+
+
+    <!--outbreaks tokens-->
+    <ng-container
+      *ngTemplateOutlet="outbreakstemplate; context: {'outbreaks':gameStateView.outbreaks }">
+    </ng-container>
+
+
+    <!--epidemics tokens-->
+    <ng-container
+      *ngTemplateOutlet="epidemicstemplate; context: {'epidemics':gameStateView.epidemics }">
+    </ng-container>
+
+
+    <!--infection dumps-->
+    <ng-container
+      *ngTemplateOutlet="infectiondumptemplate; context: {'cards':gameStateView.infection_dump }">
+    </ng-container>
+
+    <!--location dumps-->
+    <ng-container
+      *ngTemplateOutlet="locationdumptemplate; context: {'cards':gameStateView.location_dump }">
+    </ng-container>
+
+  </ng-container>
+
+
+  <!--<ng-container *ngIf="dictLocations">-->
+  <!--<ng-container *ngFor="let player of playerViews">-->
+  <!--<div cdkDrag-->
+  <!--cdkDragBoundary=".mapcontainer"-->
+  <!--class="player-token" [class]="player.role"-->
+  <!--[style.top]="dictLocations[player.location].y /DY  + '%'"-->
+  <!--[style.left]="dictLocations[player.location].x /DX+ '%'"-->
+
+  <!--&gt;</div>-->
+  <!--</ng-container>-->
+  <!--</ng-container>-->
+
+  <!--diseases-->
+  <ng-container *ngIf="dictLocations && gameStateView">
+    <ng-container *ngFor="let loc_diseases of gameStateView.locations_disease_count">
+      <ng-container *ngFor="let disease of loc_diseases.diseases, index as idx">
+        <ng-container
+          *ngTemplateOutlet="locationtokentemplate; context: {
+          'x':(dictLocations[loc_diseases.location].x  ) /DX - 0.5*idx - 1,
+          'y':dictLocations[loc_diseases.location].y /DY,
+          'fill':disease.type,
+          'count':disease.count}">
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+
+  <!--research centers-->
+  <ng-container *ngIf="gameStateView">
+    <ng-container *ngFor="let loc of gameStateView.locations_research_center| keyvalue">
+      <ng-container
+        *ngTemplateOutlet="researchCenterTemplate; context: {
+          'x':(dictLocations[loc.key].x  ) /DX,
+          'y':dictLocations[loc.key].y /DY - 1 }">
+      </ng-container>
+
+    </ng-container>
+  </ng-container>
+
+
+  <!--<ng-container *ngIf="gameStateView">-->
+    <!--<ng-container *ngFor="let loc of dictLocations| keyvalue">-->
+      <!--<ng-container-->
+        <!--*ngTemplateOutlet="researchCenterTemplate; context: {-->
+          <!--'x':(dictLocations[loc.key].x  ) /DX,-->
+          <!--'y':dictLocations[loc.key].y /DY - 1 }">-->
+      <!--</ng-container>-->
+
+    <!--</ng-container>-->
+  <!--</ng-container>-->
+
+
+</div>
+
+
+<ng-template #locationtokentemplate let-x="x" let-y="y" let-fill="fill" let-count="count">
+
+  <ng-container *ngIf="count==1">
+    <svg height="15" width="15" [style.position]="'absolute'" [style.bottom]="(100-y)+'%'" [style.left]="x+'%'"
+         [style.fill]="fill" [style.stroke-width]="1" [style.stroke]="'lightgrey'">
+      <circle cx="7.5" cy="7.5" r="7.55"></circle>
+    </svg>
+  </ng-container>
+
+  <ng-container *ngIf="count==2">
+    <svg height="30" width="15" [style.position]="'absolute'" [style.bottom]="(100-y)+'%'" [style.left]="x+'%'"
+         [style.fill]="fill" [style.stroke-width]="1" [style.stroke]="'lightgrey'">
+      <circle cx="7.5" cy="7.5" r="7.5"></circle>
+      <circle cx="7.5" cy="22.5" r="7.5"></circle>
+    </svg>
+  </ng-container>
+  <ng-container *ngIf="count==3">
+    <svg height="45" width="15" [style.position]="'absolute'" [style.bottom]="(100-y)+'%'" [style.left]="x+'%'"
+         [style.fill]="fill" [style.stroke-width]="1" [style.stroke]="'lightgrey'">
+      <circle cx="7.5" cy="7.5" r="7.5"></circle>
+      <circle cx="7.5" cy="22.5" r="7.5"></circle>
+      <circle cx="7.5" cy="37.5" r="7.5"></circle>
+    </svg>
+
+  </ng-container>
+
+</ng-template>
+
+<ng-template #diseasecounttemplate let-disease="disease">
+  <div [class]="'disease-count '+disease.type"
+       [class.cured]="disease.status===diseaseStatus.CURED || disease.status===diseaseStatus.ERADICATED">
+    {{disease.count}}
+  </div>
+</ng-template>
+
+
+<ng-template #outbreakstemplate let-outbreaks="outbreaks">
+  <div class="outbreaks"
+       [style.top]="56.6 + outbreaks*4.25 +'%'"
+       [style.left]="3.4 + 3.1*outbreaks%2 + '%'">
+    <img src="assets/img/outbreaks.png">
+  </div>
+</ng-template>
+
+<ng-template #epidemicstemplate let-epidemics="epidemics">
+  <div class="epidemics"
+       [style.top]="19.6 + '%'"
+       [style.left]="73.7 + 3.72*epidemics+ '%'">
+    <img src="assets/img/epidemics.png">
+  </div>
+</ng-template>
+
+<ng-template #infectiondumptemplate let-cards="cards">
+  <div class="dump infection-dump" fxLayout="row wrap">
+    <div *ngFor="let card of cards" class="card" [class]="dictLocations[card].location_type">{{card}}
+    </div>
+
+  </div>
+</ng-template>
+
+
+<ng-template #locationdumptemplate let-cards="cards">
+  <div class="dump location-dump" fxLayout="row wrap">
+    <div *ngFor="let card of cards" class="card"
+         [class]="dictLocations[card]?dictLocations[card].location_type:cardTypes.event">{{card}}
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #selectedLocationtemplate let-x="x" let-y="y">
+  <div class="selected-location" [style.left]="x+'%'" [style.top]="y+'%'"></div>
+</ng-template>
+
+<ng-template #researchCenterTemplate let-x="x" let-y="y">
+  <img class="research-center icon-small" src="assets/img/research_center.svg"
+       [style.left]="x+'%'" [style.top]="y+'%'"
+  >
+</ng-template>
+

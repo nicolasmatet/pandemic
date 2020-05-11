@@ -1,0 +1,7 @@
+{
+  "port": 4200,
+  "files": [],
+  "server": {
+    "baseDir": "./dist/pandemic"
+  }
+}

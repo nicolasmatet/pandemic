@@ -1,0 +1,18 @@
+<mat-card *ngIf="playroomView && !playroomView.has_started">
+  <mat-card-content fxLayoutAlign="center center">
+    <button mat-raised-button color="primary" (click)="openPlayerMenu()">Voir les joueurs</button>
+  </mat-card-content>
+</mat-card>
+
+<app-cards fxFill *ngIf="playroomView && playroomView.has_started"
+           [playroomView]="playroomView"
+           [playerViews]="playerViews"
+           (playerMenu)="openPlayerMenu()"
+
+></app-cards>
+
+<app-game class="game-container" [gameStateView]="gameStateView">
+</app-game>
+
+
+

@@ -1,0 +1,27 @@
+.cards-card {
+  min-height: 120px;
+}
+
+.cards-card-content {
+  padding: 10px 10px 10px 30px;
+}
+
+.iscurrent {
+  text-decoration: underline;
+}
+
+.playername {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.playername:hover {
+  font-size: larger;
+}
+.player-description{
+  max-width: 25%;
+}
+
+.player-description-header{
+  margin-bottom: 10px;
+}
