@@ -3,7 +3,6 @@ import {webSocket, WebSocketSubject} from 'rxjs/webSocket';
 import {filter} from 'rxjs/operators';
 
 
-
 export enum MsgTypes {
   INFO = 'info',
   ERROR = 'error',
@@ -25,7 +24,12 @@ export class PlayroomsocketService {
   private SERVER_URL: string;
 
   constructor(@Inject('environment') private environment) {
-    this.SERVER_URL = 'ws://' + environment.url + '/ws/pandemic/';
+    // Support TLS-specific URLs, when appropriate.
+    if (window.location.protocol === 'https:') {
+      this.SERVER_URL = 'wss://' + environment.url + '/ws/pandemic/';
+    } else {
+      this.SERVER_URL = 'ws://' + environment.url + '/ws/pandemic/';
+    }
   }
 
   private socket: WebSocketSubject<Message>;

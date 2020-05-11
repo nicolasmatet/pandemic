@@ -1,7 +1,6 @@
 {
-  "/etr/*": {
-    "target": "http://localhost:8000",
-    "secure": false,
-    "pathRewrite": {"^/etr" : ""}
+  "/ws/pandemic/*": {
+    "target": "pandemics-back.herokuapp.com",
+    "secure": false
   }
 }
