@@ -1,10 +1,23 @@
 @import "~@angular/material/theming";
 @import '../variables.scss';
 
-
-
 .game-container {
   width: 100%;
+}
+
+.no-selected-player {
+  position: absolute;
+  width: 30%;
+  height: 100px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+  border-radius: 20px;
+  padding: 40px;
+  text-align: center;
+  vertical-align: middle
 }
 
 .main-menu-icon {
@@ -12,14 +25,11 @@
   height: 20px;
 }
 
-
-
-
-.main-menu-button{
+.main-menu-button {
   background-color: mat-color($primaryPalette);
   color: mat-color($accentPalette);
 }
 
-.main-menu-button.selected{
+.main-menu-button.selected {
 }
 

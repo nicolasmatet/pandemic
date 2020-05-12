@@ -13,6 +13,10 @@
 
 <app-game class="game-container" [gameStateView]="gameStateView">
 </app-game>
+<div class="no-selected-player"
+     *ngIf="!(playroomView && playroomView.player)"
+>Vous n'avez pas sélectionné de joueur !
+</div>
 
 
 

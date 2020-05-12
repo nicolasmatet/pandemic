@@ -163,6 +163,7 @@
 </ng-template>
 
 <ng-template #diseasecounttemplate let-disease="disease">
+
   <div [class]="'disease-count '+disease.type"
        [class.cured]="disease.status===diseaseStatus.CURED || disease.status===diseaseStatus.ERADICATED">
     {{disease.count}}

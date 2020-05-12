@@ -77,6 +77,7 @@ export class PlayroomComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    this.openPlayerMenu();
   }
 
   setMenuSelection(value) {

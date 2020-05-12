@@ -21,7 +21,7 @@
   position: absolute;
   color: white;
   font-weight: bold;
-  font-size: 64px;
+  font-size: 3vw;
 }
 
 .infection-count {
@@ -32,7 +32,7 @@
 
 .location-count {
   top: 81%;
-  left: 60%;
+  left: 60.3%;
   color: #d8b980;
 }
 
@@ -117,6 +117,7 @@
   -moz-box-shadow: 0px 0px 10px 5px darkgreen;
   box-shadow: 0px 0px 10px 5px darkgreen;
 }
+
 
 .disease-count {
   position: absolute;

@@ -1,8 +1,8 @@
-
 <ng-container *ngIf="playroomView">
 
   <div class="players-card" fxLayout="column" fxLayoutAlign="space-between start" fxLayoutGap="20px">
-    <div fxFill style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;"
+    <div fxFill
+         style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;"
          unselectable="on"
          onselectstart="return false;"
          onmousedown="return false;">
@@ -41,15 +41,14 @@
         </span>
         </ng-container>
 
-      <button *ngIf="!player.taken" mat-icon-button color="accent" (click)="joinGameAs(player)" matTooltip="Utiliser">
-        <mat-icon>transfer_within_a_station</mat-icon>
-      </button>
+        <button *ngIf="!player.taken" mat-icon-button color="accent" (click)="joinGameAs(player)" matTooltip="Utiliser">
+          <mat-icon>transfer_within_a_station</mat-icon>
+        </button>
 
 
-
-      <button *ngIf="player.taken" mat-icon-button color="warn" (click)="kickPlayer(player)" matTooltip="Kick">
-        <mat-icon>not_interested</mat-icon>
-      </button>
+        <button *ngIf="player.taken" mat-icon-button color="warn" (click)="kickPlayer(player)" matTooltip="Kick">
+          <mat-icon>not_interested</mat-icon>
+        </button>
 
 
         <span fxFlex fxLayoutAlign="start center">
@@ -79,11 +78,14 @@
                       [disabled]="!(  playroomView.player && playroomView.player.role)"
                       [checked]="playroomView.player && playroomView.player.is_ready"
                       (change)="readyPlayer($event)" matTooltip="Prêt ?">
+          Prêt !
         </mat-checkbox>
 
       </div>
 
-      <button *ngIf="!playroomView.has_started && playroomView.players" fxFill mat-raised-button color="primary" (click)="onStartGame()">
+      <button *ngIf="!playroomView.has_started && playroomView.players"
+              [disabled]="!allPlayersReady"
+              fxFill mat-raised-button color="primary" (click)="onStartGame()">
         Commencer la pandémie ! ({{playroomView.players.length}} joueurs)
       </button>
     </div>

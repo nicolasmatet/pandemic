@@ -33,12 +33,13 @@ export class PlayersComponent implements OnInit {
   username = 'M.Beauchat';
   roles = ALL_ROLES;
   playroomView: PlayRoomState;
+  allPlayersReady = false;
 
   constructor(private gameService: GameService,
               public dialogRef: MatDialogRef<PlayersComponent>,
               @Inject(MAT_DIALOG_DATA) public data: PlayersComponentData) {
     this.playroomView = this.data.playroomView;
-
+    this.allPlayersReady = this.getAllPlayersReady(this.playroomView);
     this.gameService.playroomView.subscribe(playroomView => {
       this.playroomView = playroomView;
     });
@@ -78,7 +79,21 @@ export class PlayersComponent implements OnInit {
   }
 
   public onStartGame() {
-    this.dialogRef.close();
-    this.gameService.onStartGame();
+    if (this.allPlayersReady) {
+      this.dialogRef.close();
+      this.gameService.onStartGame();
+    }
+  }
+
+  public getAllPlayersReady(playroomView) {
+    if (!playroomView || playroomView.has_started) {
+      return true;
+    }
+    for (const player of playroomView.players) {
+      if (!player.is_ready) {
+        return false;
+      }
+    }
+    return true;
   }
 }

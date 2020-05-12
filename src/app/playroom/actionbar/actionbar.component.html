@@ -1,6 +1,7 @@
 <button mat-mini-fab color="warn"
         [disabled]="selectedCards.length==0 || (gameStateView.phase!=gamePhases.DUMP_CARD)"
         (click)="dumpCard()"
+        matTooltip="Jeter les cartes sélectionnées"
 >
   <img src="assets/img/delete.svg" class="icon-small">
 </button>
@@ -9,6 +10,7 @@
 <button mat-mini-fab color="accent"
         [disabled]="!selectedLocation ||gameStateView.phase!=gamePhases.PLAYER_ACTION"
         (click)="goFromLocation()"
+        matTooltip="Jeter l'emplacement actuel pour aller vers l'emplacement sélectionné"
 >
   <img src="assets/img/departure.svg" class="icon-small">
 </button>
@@ -18,6 +20,7 @@
         *ngIf="gameStateView.player_roles && playroomView.player && gameStateView && gameStateView.player_roles[playroomView.player.name] === rolesEnum.EXPERT"
         [disabled]="!selectedLocation || !selectedCards.length || (gameStateView.phase!=gamePhases.PLAYER_ACTION)"
         (click)="goToLocationExpert()"
+        matTooltip="Jeter n'importe quel emplacement pour aller n'importe où"
 >
   <img src="assets/img/drop.svg" class="icon-small">
 </button>
@@ -27,6 +30,7 @@
 <button mat-mini-fab color="accent"
         [disabled]="!selectedLocation || (gameStateView.phase!=gamePhases.PLAYER_ACTION)"
         (click)="goToLocation()"
+        matTooltip="Jeter l'emplacement sélectionné pour s'y déplacer"
 >
   <img src="assets/img/arrival.svg" class="icon-small">
 </button>
@@ -36,6 +40,7 @@
 <button mat-mini-fab color="accent"
         *ngIf="gameStateView.phase !== gamePhases.DESTROY"
         (click)="buildResearchCenter()"
+        matTooltip="Jeter l'emplacement actuel et construire un centre de recherche"
 >
   <img src="assets/img/build.svg" class="icon-small">
 </button>
@@ -46,6 +51,7 @@
         *ngIf="gameStateView.phase === gamePhases.DESTROY"
         (click)="destroyResearchCenter()"
         color="warn"
+        matTooltip="Détruire le centre de recherche de l'emplacement sélectionné"
 >
   <img src="assets/img/destroy.svg" class="icon-small">
 </button>
@@ -55,6 +61,7 @@
 <button mat-mini-fab color="primary"
         [disabled]="selectedCards.length<gameRules.N_CARDS_TO_CURE || (gameStateView.phase!=gamePhases.PLAYER_ACTION)"
         (click)="cureDisease()"
+        matTooltip="Utilise 5 cartes pour trouver un remède"
 >
   <img src="assets/img/cure.svg" class="icon-small">
 </button>
@@ -64,6 +71,7 @@
 <button mat-mini-fab color="primary"
         [disabled]="!(selectedCards.length===1 &&selectedCards[0] && selectedCards[0].type === cardTypes.event)"
         (click)="playEvent()"
+        matTooltip="Jouer l'évènement sélectionné"
 >
   <img src="assets/img/event.svg" class="icon-small">
 </button>
@@ -73,6 +81,7 @@
   mat-mini-fab
   [disabled]="!gameStateView.cancellable"
   (click)="cancelLastAction()"
+  matTooltip="Annuler"
 >
   <img src="assets/img/revert.svg" class="icon-small">
 </button>
