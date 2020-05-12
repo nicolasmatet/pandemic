@@ -26,6 +26,7 @@ export class SocketService {
   }
 
   public send(message: any): void {
+    console.log('sending', message, 'to', this.SERVER_URL);
     this.socket.next(message);
   }
 

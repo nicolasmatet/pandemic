@@ -35,6 +35,7 @@ export class CreatePlayroomComponent implements OnInit {
   }
 
   public startPandemic() {
+    console.log('lauching new playroom');
     this.socketService.send('/new');
   }
 
