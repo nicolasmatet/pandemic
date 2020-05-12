@@ -73,21 +73,23 @@
           <mat-icon>add_circle_outline</mat-icon>
         </button>
 
-        <mat-checkbox fxFlex="10"
+
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="start center" *ngIf="!(playroomView && playroomView.has_started)">
+        <mat-checkbox fxFlex="20 0 1"
                       class="ready-checkbox"
-                      [disabled]="!(  playroomView.player && playroomView.player.role)"
                       [checked]="playroomView.player && playroomView.player.is_ready"
                       (change)="readyPlayer($event)" matTooltip="Prêt ?">
           Prêt !
         </mat-checkbox>
 
+        <button
+          [disabled]="!(playroomView && playroomView.player && playroomView.player.is_ready)"
+          fxFlex="80 1 0" mat-raised-button color="primary" (click)="onStartGame()">
+          Commencer la pandémie ! ({{playroomView.players.length}} joueurs)
+        </button>
       </div>
-
-      <button *ngIf="!playroomView.has_started && playroomView.players"
-              [disabled]="!allPlayersReady"
-              fxFill mat-raised-button color="primary" (click)="onStartGame()">
-        Commencer la pandémie ! ({{playroomView.players.length}} joueurs)
-      </button>
     </div>
   </div>
 

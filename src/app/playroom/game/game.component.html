@@ -25,7 +25,11 @@
 
   <app-phase-display [gameStateView]="gameStateView"></app-phase-display>
 
-  <img src="assets/img/map.png" #map class="map" (click)="onClickMap($event)">
+  <img
+    src="assets/img/map.png" #map class="map" (click)="onClickMap($event)"
+
+
+  >
 
   <ng-container *ngIf="selectedLocation">
     <ng-container
@@ -65,7 +69,13 @@
       *ngTemplateOutlet="epidemicstemplate; context: {'epidemics':gameStateView.epidemics }">
     </ng-container>
 
+    <!--city names-->
+    <ng-container *ngIf="displayNames">
+      <ng-container
+        *ngTemplateOutlet="locationnamestemplate; context: {'locations':objectvalues(dictLocations) }">
+      </ng-container>
 
+    </ng-container>
     <!--infection dumps-->
     <ng-container
       *ngTemplateOutlet="infectiondumptemplate; context: {'cards':gameStateView.infection_dump }">
@@ -120,39 +130,51 @@
 
 
   <!--<ng-container *ngIf="gameStateView">-->
-    <!--<ng-container *ngFor="let loc of dictLocations| keyvalue">-->
-      <!--<ng-container-->
-        <!--*ngTemplateOutlet="researchCenterTemplate; context: {-->
-          <!--'x':(dictLocations[loc.key].x  ) /DX,-->
-          <!--'y':dictLocations[loc.key].y /DY - 1 }">-->
-      <!--</ng-container>-->
+  <!--<ng-container *ngFor="let loc of dictLocations| keyvalue">-->
+  <!--<ng-container-->
+  <!--*ngTemplateOutlet="researchCenterTemplate; context: {-->
+  <!--'x':(dictLocations[loc.key].x  ) /DX,-->
+  <!--'y':dictLocations[loc.key].y /DY - 1 }">-->
+  <!--</ng-container>-->
 
-    <!--</ng-container>-->
+  <!--</ng-container>-->
   <!--</ng-container>-->
 
 
 </div>
-
+<ng-template #locationnamestemplate let-locations="locations">
+  <ng-container *ngFor="let loc of locations">
+    <div class="location-name"
+         [style.left]="(dictLocations[loc.name].x  ) /DX  +'%'"
+         [style.top]="dictLocations[loc.name].y /DY +'%'"
+         [class]="'card '+loc.location_type ">
+      {{loc.name}}
+    </div>
+  </ng-container>
+</ng-template>
 
 <ng-template #locationtokentemplate let-x="x" let-y="y" let-fill="fill" let-count="count">
 
   <ng-container *ngIf="count==1">
     <svg height="15" width="15" [style.position]="'absolute'" [style.bottom]="(100-y)+'%'" [style.left]="x+'%'"
-         [style.fill]="fill" [style.stroke-width]="1" [style.stroke]="'lightgrey'">
+         [style.fill]="fill" [style.stroke-width]="1" [style.stroke]="'lightgrey'"
+         [style.pointer-events]="'none'">
       <circle cx="7.5" cy="7.5" r="7.55"></circle>
     </svg>
   </ng-container>
 
   <ng-container *ngIf="count==2">
     <svg height="30" width="15" [style.position]="'absolute'" [style.bottom]="(100-y)+'%'" [style.left]="x+'%'"
-         [style.fill]="fill" [style.stroke-width]="1" [style.stroke]="'lightgrey'">
+         [style.fill]="fill" [style.stroke-width]="1" [style.stroke]="'lightgrey'"
+         [style.pointer-events]="'none'">
       <circle cx="7.5" cy="7.5" r="7.5"></circle>
       <circle cx="7.5" cy="22.5" r="7.5"></circle>
     </svg>
   </ng-container>
   <ng-container *ngIf="count==3">
     <svg height="45" width="15" [style.position]="'absolute'" [style.bottom]="(100-y)+'%'" [style.left]="x+'%'"
-         [style.fill]="fill" [style.stroke-width]="1" [style.stroke]="'lightgrey'">
+         [style.fill]="fill" [style.stroke-width]="1" [style.stroke]="'lightgrey'"
+         [style.pointer-events]="'none'">
       <circle cx="7.5" cy="7.5" r="7.5"></circle>
       <circle cx="7.5" cy="22.5" r="7.5"></circle>
       <circle cx="7.5" cy="37.5" r="7.5"></circle>
@@ -174,7 +196,7 @@
 <ng-template #outbreakstemplate let-outbreaks="outbreaks">
   <div class="outbreaks"
        [style.top]="56.6 + outbreaks*4.25 +'%'"
-       [style.left]="3.4 + 3.1*outbreaks%2 + '%'">
+       [style.left]="3.4 + 3.1*(outbreaks%2) + '%'">
     <img src="assets/img/outbreaks.png">
   </div>
 </ng-template>
@@ -211,6 +233,7 @@
 <ng-template #researchCenterTemplate let-x="x" let-y="y">
   <img class="research-center icon-small" src="assets/img/research_center.svg"
        [style.left]="x+'%'" [style.top]="y+'%'"
+
   >
 </ng-template>
 

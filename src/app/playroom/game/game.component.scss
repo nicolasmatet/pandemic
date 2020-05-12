@@ -13,6 +13,13 @@
   left: 0;
 }
 
+.location-name {
+  position: absolute;
+  transform: translate(-50%, 60%);
+  font-size: 0.6vw;
+  pointer-events: none
+}
+
 .map {
   width: 100%;
 }
@@ -118,7 +125,6 @@
   box-shadow: 0px 0px 10px 5px darkgreen;
 }
 
-
 .disease-count {
   position: absolute;
   top: 86.5%;
@@ -128,6 +134,7 @@
   height: 30px;
   border-radius: 50%;
   text-align: center;
+  vertical-align: middle;
 }
 
 .disease-count.cured {
@@ -201,6 +208,7 @@
 }
 
 .research-center {
+  pointer-events: none;
   position: absolute;
   z-index: 2;
 }

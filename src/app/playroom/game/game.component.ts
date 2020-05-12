@@ -1,10 +1,8 @@
-import {AfterViewInit, Component, Input, OnInit, Pipe, PipeTransform, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, HostListener, Input, OnInit, Pipe, PipeTransform, ViewChild} from '@angular/core';
 import {Card, CardType, DiseaseStatus, EventType, GameService, GameState, MapLocation, PlayerView} from '../shared/services/game.service';
 import {kdTree} from 'kd-tree-javascript';
 import {LocationService} from '../shared/services/location.service';
 import {CardsService} from '../shared/services/cards.service';
-import {ChoosecardsComponent} from '../choosecards/choosecards.component';
-import {MatDialog} from '@angular/material/dialog';
 
 @Pipe({name: 'mapToArray'})
 export class MapToArray implements PipeTransform {
@@ -40,6 +38,8 @@ export class GameComponent implements OnInit, AfterViewInit {
   selectedLocation: MapLocation = null;
   selectedCards: Card[] = [];
   thetas = {0: 0, 1: Math.PI, 2: Math.PI / 2, 3: -Math.PI / 2, 4: 0, 5: 0, 6: 0};
+  displayNames = false;
+  objectvalues = obj => Object.values(obj);
 
   constructor(private gameService: GameService,
               private locationService: LocationService,
@@ -156,6 +156,16 @@ export class GameComponent implements OnInit, AfterViewInit {
 
   }
 
+  @HostListener('window:keydown', ['$event'])
+  onKeydown(event) {
+    this.displayNames = true;
+  }
+
+  @HostListener('window:keyup', ['$event'])
+  onKeyUp(event) {
+    this.displayNames = false;
+  }
+
   locationAction(location) {
     if (location) {
       const playerLocation = this.gameService.currentPlayerLocation();
@@ -181,7 +191,6 @@ export class GameComponent implements OnInit, AfterViewInit {
   }
 
   dropPlayer(event) {
-    console.log('drop', event);
     const distance = event.distance;
     const dragedPlayer: PlayerView = event.item.data;
     const previousPosition = dragedPlayer.dragPosition;
@@ -213,7 +222,6 @@ export class GameComponent implements OnInit, AfterViewInit {
     }
 
   }
-
 
 
 
