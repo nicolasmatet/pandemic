@@ -1,6 +1,6 @@
-<div class="display">
+<div class="display" fxLayout="column" fxLayout.lt-lg="row" fxLayoutGap="0.5vw" fxLayoutAlign="center center"
+     fxLayoutAlign.lt-lg="start center">
 
-  <app-actionbar class="actionbar-container"></app-actionbar>
   <div class="phase-display-container" fxLayout="row" fxLayoutGap="0" *ngIf="gameStateView">
     <app-actioncounter
       *ngIf="gameStateView.phase===gamePhases.PLAYER_ACTION || gameStateView.phase===gamePhases.END_TURN"
@@ -17,6 +17,8 @@
     <app-epidemic *ngIf="gameStateView.phase===gamePhases.SOLVE_EPIDEMIC"></app-epidemic>
 
   </div>
+
+  <app-actionbar class="actionbar-container"></app-actionbar>
 
 </div>
 

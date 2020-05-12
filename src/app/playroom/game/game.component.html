@@ -8,8 +8,17 @@
      (cdkDropListDropped)="dropPlayer($event)"
 >
 
-  <!--players-->
 
+
+  <img
+    src="assets/img/map.png" #map class="map" (click)="onClickMap($event)"
+
+
+  >
+
+  <app-phase-display [gameStateView]="gameStateView"></app-phase-display>
+
+  <!--players-->
   <div cdkDrag
        cdkDragBoundary=".mapcontainer"
        *ngFor="let player of playerViews"
@@ -22,14 +31,6 @@
 
   >
   </div>
-
-  <app-phase-display [gameStateView]="gameStateView"></app-phase-display>
-
-  <img
-    src="assets/img/map.png" #map class="map" (click)="onClickMap($event)"
-
-
-  >
 
   <ng-container *ngIf="selectedLocation">
     <ng-container
@@ -88,19 +89,6 @@
 
   </ng-container>
 
-
-  <!--<ng-container *ngIf="dictLocations">-->
-  <!--<ng-container *ngFor="let player of playerViews">-->
-  <!--<div cdkDrag-->
-  <!--cdkDragBoundary=".mapcontainer"-->
-  <!--class="player-token" [class]="player.role"-->
-  <!--[style.top]="dictLocations[player.location].y /DY  + '%'"-->
-  <!--[style.left]="dictLocations[player.location].x /DX+ '%'"-->
-
-  <!--&gt;</div>-->
-  <!--</ng-container>-->
-  <!--</ng-container>-->
-
   <!--diseases-->
   <ng-container *ngIf="dictLocations && gameStateView">
     <ng-container *ngFor="let loc_diseases of gameStateView.locations_disease_count">
@@ -129,19 +117,10 @@
   </ng-container>
 
 
-  <!--<ng-container *ngIf="gameStateView">-->
-  <!--<ng-container *ngFor="let loc of dictLocations| keyvalue">-->
-  <!--<ng-container-->
-  <!--*ngTemplateOutlet="researchCenterTemplate; context: {-->
-  <!--'x':(dictLocations[loc.key].x  ) /DX,-->
-  <!--'y':dictLocations[loc.key].y /DY - 1 }">-->
-  <!--</ng-container>-->
-
-  <!--</ng-container>-->
-  <!--</ng-container>-->
-
 
 </div>
+
+
 <ng-template #locationnamestemplate let-locations="locations">
   <ng-container *ngFor="let loc of locations">
     <div class="location-name"

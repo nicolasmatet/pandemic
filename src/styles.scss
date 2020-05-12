@@ -4,7 +4,7 @@
 
 @font-face {
   font-family: "Oxanium";
-  src: url("https://fonts.googleapis.com/css?family=Oxanium");
+  src: url("https://fonts.gstatic.com/s/oxanium/v1/RrQQboN_4yJ0JmiMe2LE0Q.woff2");
 }
 
 html, body {
@@ -15,7 +15,13 @@ html, body {
 body {
   margin: 0;
   font-family: Oxanium, "Helvetica Neue", sans-serif;
-  font-weight: bolder;
+  font-weight: bold;
+}
+
+.mat-card {
+  margin: 0;
+  font-family: Oxanium, "Helvetica Neue", sans-serif;
+  font-weight: bold;
 }
 
 mat-card {
@@ -100,7 +106,7 @@ mat-card {
 }
 
 .action-counter {
-  padding: 8px 32px 8px 16px;
+  padding: 8px 16px 8px 32px;
   border-radius: 10px;
   //background: linear-gradient(330deg, rgba(25, 25, 25, 1) 0%, rgb(146, 142, 142) 50%, rgb(168, 168, 168) 100%);
   background: rgb(25, 25, 25) url(/assets/img/metal.png);

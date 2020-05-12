@@ -38,8 +38,8 @@
 }
 
 .location-count {
-  top: 81%;
-  left: 60.3%;
+  top: 82%;
+  left: 60.5%;
   color: #d8b980;
 }
 
@@ -48,17 +48,12 @@
   background-color: transparent;
   position: absolute;
   z-index: 2;
-  border-radius: 24px;
-  height: 48px;
-  width: 48px;
+  border-radius: 50%;
+  height: 2.5vw;
+  width: 2.5vw;
 }
 
-.location {
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  border-radius: 8px;
-}
+
 
 .red {
   background-color: red;
@@ -128,13 +123,15 @@
 .disease-count {
   position: absolute;
   top: 86.5%;
-  font-size: 20px;
+  font-size: 1vw;
   color: white;
-  width: 30px;
-  height: 30px;
+  width: 1.7vw;
+  height: 1.7vw;
   border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   text-align: center;
-  vertical-align: middle;
 }
 
 .disease-count.cured {
@@ -183,7 +180,7 @@
 
 .card {
   max-height: 18px;
-  font-size: 12px;
+  font-size: 0.6vw;
   margin: 3px;
 }
 
@@ -201,9 +198,10 @@
   border-radius: 50%;
   width: 0;
   height: 0;
-  box-shadow: 0 0 30px 15px rgba(255, 255, 255, 0.8), /* inner white */
-  0 0 50px 30px rgba(255, 0, 255, 0.8), /* middle magenta */
-  0 0 50px 45px rgba(0, 255, 255, 0.8); /* outer cyan */
+  box-shadow:
+    0 0 1vw 0.5vw rgba(255, 255, 255, 1), /* inner white */
+  0 0 3vw 2.5vw rgba(255, 0, 255, 0.8), /* middle magenta */
+  0 0 3vw 2.8vw rgba(0, 255, 255, 1); /* outer cyan */
 
 }
 
