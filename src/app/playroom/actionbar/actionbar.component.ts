@@ -29,6 +29,7 @@ export class ActionbarComponent implements OnInit {
     this.gameService.playroomView.subscribe(playroomView => {
       this.playroomView = playroomView;
     });
+
     this.cardService.selectedCards.subscribe(selectedCards => {
       this.selectedCards = selectedCards;
     });
@@ -40,7 +41,8 @@ export class ActionbarComponent implements OnInit {
 
   dumpCard() {
     this.gameService.dumpCard(this.selectedCards.map(card => card.name));
-    // this.cardService.toogleCardSelection(cardToDump);
+    this.cardService.unSelectCards();
+    this.locationService.unselectLocation();
   }
 
   cancelLastAction() {
@@ -50,17 +52,18 @@ export class ActionbarComponent implements OnInit {
   cureDisease() {
     this.gameService.cureDisease(this.selectedCards.map(card => card.name));
     this.cardService.unSelectCards();
+    this.locationService.unselectLocation();
   }
 
   buildResearchCenter() {
     if (this.selectedCards.length === 1 && this.selectedLocation && this.selectedCards[0].name === EventType.subvention) {
       this.playEventSubvention();
-      this.cardService.unSelectCards();
-      this.locationService.unselectLocation();
     }
     else {
       this.gameService.buildResearchCenter();
     }
+    this.locationService.unselectLocation();
+    this.cardService.unSelectCards();
   }
 
   private playEventSubvention() {
@@ -93,6 +96,7 @@ export class ActionbarComponent implements OnInit {
 
   goFromLocation() {
     this.gameService.goFromLocation(this.selectedLocation.name);
+    this.cardService.unSelectCards();
     this.locationService.unselectLocation();
   }
 
@@ -125,8 +129,8 @@ export class ActionbarComponent implements OnInit {
   goToLocationExpert() {
     if (this.selectedLocation && this.selectedCards && this.selectedCards.length >= 1) {
       this.gameService.goToLocationExpert(this.selectedLocation.name, this.selectedCards[0].name);
-      this.locationService.unselectLocation();
       this.cardService.unSelectCards();
+      this.locationService.unselectLocation();
     }
   }
 
@@ -137,6 +141,7 @@ export class ActionbarComponent implements OnInit {
 
   goToLocation() {
     this.gameService.goToLocation(this.selectedLocation.name);
+    this.cardService.unSelectCards();
     this.locationService.unselectLocation();
 
   }

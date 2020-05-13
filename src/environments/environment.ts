@@ -3,9 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  url: 'localhost:5000',
-  superUrl: 'localhost:5000',
-  urlRead: 'localhost:5000',
+  url: 'localhost:8000',
+  superUrl: 'localhost:8000',
+  urlRead: 'localhost:8000',
   fiscalYearStartDate: 1,
   fiscalYearStartMonth: 0,
   fiscalYearEndDate: 31,
