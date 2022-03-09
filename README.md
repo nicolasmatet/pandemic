@@ -1,4 +1,5 @@
 # Pandemic
+Front-End for a web-version of the board game [PANDEMIC](https://boardgamegeek.com/boardgame/30549/pandemic)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.4.
 
